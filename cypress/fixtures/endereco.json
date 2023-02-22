@@ -1,0 +1,14 @@
+[
+    {
+        "empresa":"EBAC",
+        "endereco":"Av. Candido de Abreu",
+        "pais":"Brasil",
+        "numero":"70",
+        "cidade":"Curitiba",
+        "estado":"Paraná",
+        "cep":"82590-300",
+        "telefone":"4192721840",
+        "email":"teste@teste.com.br",
+        "comentario":"comentario"
+    }
+]
