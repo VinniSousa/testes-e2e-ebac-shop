@@ -7,6 +7,8 @@ let emailFaker = faker.internet.email(nomeFaker)
 const perfil = require('../fixtures/perfil.json')
 const dadosCheckout = require('../fixtures/endereco.json');
 
+
+
 context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
     /*  Como cliente - OK 
         Quero acessar a Loja EBAC - OK
@@ -36,13 +38,8 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.get('.woocommerce-MyAccount-content > :nth-child(3)').should('contain','A partir do painel de controle de sua conta')
 
         // Acessar a página dos produtos desejados e adicionar ao carrinho
-        cy.visit('produtos/page/51')
-        cy.contains('Zoltan Gym Tee').click()
-        cy.addProdutos('M','Green',2)
-        cy.visit('produtos/page/6/')
-        cy.contains('Cassia Funnel Sweatshirt').click()
-        cy.addProdutos('S','White',2)
-        cy.get('.woocommerce-message').should('contain','2 × “Cassia Funnel Sweatshirt” foram adicionados no seu carrinho.')
+        cy.addProdutos(51,'Zoltan Gym Tee','M','Green',2)
+        cy.addProdutos(6, 'Cassia Funnel Sweatshirt','S','White',2)
 
         // Validar carrinho e seguir com check-out
         cy.get('.woocommerce-message > .button').click()
@@ -63,6 +60,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         )
         cy.get('#terms').click()
         cy.get('#place_order').click()
-
+        cy.wait(10000)
+        cy.get('.woocommerce-notice').should('contain','Obrigado. Seu pedido foi recebido.')
     });
 })

@@ -37,9 +37,12 @@ Cypress.Commands.add('Cadastro', (email, senha) => {
     cy.get(':nth-child(4) > .button').click()
 })
 
-Cypress.Commands.add('addProdutos', (tamanho, cor,  quantidade) => {
+Cypress.Commands.add('addProdutos', (pagina, produto, tamanho, cor,  quantidade) => {
+    cy.visit('produtos/page' + pagina)
+    cy.contains(produto).click()
     cy.get('.button-variable-item-'+ tamanho).click()
     cy.get('.button-variable-item-'+ cor).click()
     cy.get('.input-text').clear().type(quantidade)
     cy.get('.single_add_to_cart_button').click()
+    cy.get('.woocommerce-message').should('contain','foram adicionados no seu carrinho.')
 })
